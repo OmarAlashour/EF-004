@@ -1,0 +1,92 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            // Use IntelliSense to find out which attributes exist for C# debugging
+            // Use hover for the description of the existing attributes
+            // For further information visit https://github.com/dotnet/vscode-csharp/blob/main/debugger-launchjson.md
+            "name": ".NET Core Launch (EF004.CreateSession)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build EF004.CreateSession",
+            // If you have changed target frameworks, make sure to update the program path.
+            "program": "${workspaceFolder}/EF004.CreateSession/bin/Debug/net9.0/EF004.CreateSession.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/EF004.CreateSession",
+            // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": ".NET Core Launch (EF004.RetrieveData)",
+            "type": "coreclr", 
+            "request": "launch",
+            "preLaunchTask": "build EF004.RetrieveData",
+            "program": "${workspaceFolder}/EF004.RetrieveData/bin/Debug/net9.0/EF004.RetrieveData.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/EF004.RetrieveData",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": ".NET Core Launch (EF004.InsertWallet)",
+            "type": "coreclr",
+            "request": "launch", 
+            "preLaunchTask": "build EF004.InsertWallet",
+            "program": "${workspaceFolder}/EF004.InsertWallet/bin/Debug/net9.0/EF004.InsertWallet.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/EF004.InsertWallet",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": ".NET Core Launch (EF004.DeleteWallet)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build EF004.DeleteWallet", 
+            "program": "${workspaceFolder}/EF004.DeleteWallet/bin/Debug/net9.0/EF004.DeleteWallet.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/EF004.DeleteWallet",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": ".NET Core Launch (EF004.RetrieveWalletById)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build EF004.RetrieveWalletById",
+            "program": "${workspaceFolder}/EF004.RetrieveWalletById/bin/Debug/net9.0/EF004.RetrieveWalletById.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/EF004.RetrieveWalletById",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": ".NET Core Launch (EF004.TransferFunds)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build EF004.TransferFunds",
+            "program": "${workspaceFolder}/EF004.TransferFunds/bin/Debug/net9.0/EF004.TransferFunds.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/EF004.TransferFunds",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": ".NET Core Launch (EF004.UpdateWallet)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build EF004.UpdateWallet",
+            "program": "${workspaceFolder}/EF004.UpdateWallet/bin/Debug/net9.0/EF004.UpdateWallet.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/EF004.UpdateWallet",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach"
+        }
+    ]
+}

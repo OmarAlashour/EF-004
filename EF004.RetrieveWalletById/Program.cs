@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using EF004.RetrieveWalletById;
+using Microsoft.Extensions.Configuration;
 using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Cfg.MappingSchema;
@@ -6,86 +7,76 @@ using NHibernate.Dialect;
 using NHibernate.Driver;
 using NHibernate.Mapping.ByCode;
 using System;
-using System.Linq;
 
-namespace EF004.RetrieveWalletById
+using (var session = CreateSession())
 {
-    internal class Program
+    using (var transaction = session.BeginTransaction())
     {
-        public static void Main(string[] args)
-        {
-            using (var session = CreateSession())
-            {
-                using (var transaction = session.BeginTransaction())
-                {
-                    var idToFind = 2;
-                    //var wallet = session.Query<Wallet>()
-                    //    .FirstOrDefault(x => x.Id == idToFind);
+        var idToFind = 2;
+        //var wallet = session.Query<Wallet>()
+        //    .FirstOrDefault(x => x.Id == idToFind);
 
-                    var wallet = session.Get<Wallet>(idToFind);
-                    Console.WriteLine(wallet);
-                    transaction.Commit();   
-                } 
-            }
+        var wallet = session.Get<Wallet>(idToFind);
+        Console.WriteLine(wallet);
+        transaction.Commit();   
+    } 
+}
 
-            Console.ReadKey();
-        } 
+Console.ReadKey();
 
-        private static ISession CreateSession()
-        {
-            var config = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
-                .Build();
+ISession CreateSession()
+{
+    var config = new ConfigurationBuilder()
+        .AddJsonFile("appsettings.json")
+        .Build();
 
-            var constr = config.GetSection("constr").Value;
+    var constr = config.GetSection("constr").Value;
 
 
-            var mapper = new ModelMapper();
+    var mapper = new ModelMapper();
 
-            // list all of type mappings from assembly
+    // list all of type mappings from assembly
 
-            mapper.AddMappings(typeof(Wallet).Assembly.ExportedTypes);
+    mapper.AddMappings(typeof(Wallet).Assembly.ExportedTypes);
 
-            // Compile class mapping
-            HbmMapping domainMapping = mapper.CompileMappingForAllExplicitlyAddedEntities();
+    // Compile class mapping
+    HbmMapping domainMapping = mapper.CompileMappingForAllExplicitlyAddedEntities();
 
-            // optional
-            // Console.WriteLine(domainMapping.AsString());
+    // optional
+    // Console.WriteLine(domainMapping.AsString());
 
-            // allow the application to specify propertties and mapping documents
-            // to be used when creating
+    // allow the application to specify propertties and mapping documents
+    // to be used when creating
 
-            var hbConfig = new Configuration();
+    var hbConfig = new Configuration();
 
-            // settings from app to nhibernate 
-            hbConfig.DataBaseIntegration(c =>
-            {
-                // strategy to interact with provider
-                c.Driver<MicrosoftDataSqlClientDriver>();
+    // settings from app to nhibernate 
+    hbConfig.DataBaseIntegration(c =>
+    {
+        // strategy to interact with provider
+        c.Driver<MicrosoftDataSqlClientDriver>();
 
-                // dialect nhibernate uses to build syntaxt to rdbms
-                c.Dialect<MsSql2012Dialect>();
+        // dialect nhibernate uses to build syntaxt to rdbms
+        c.Dialect<MsSql2012Dialect>();
 
-                // connection string
-                c.ConnectionString = constr;
+        // connection string
+        c.ConnectionString = constr;
 
-                // log sql statement to console
-                // c.LogSqlInConsole = true;
+        // log sql statement to console
+        // c.LogSqlInConsole = true;
 
-                // format logged sql statement
-                // c.LogFormattedSql = true; 
-            });
+        // format logged sql statement
+        // c.LogFormattedSql = true; 
+    });
 
-            // add mapping to nhiberate configuration
-            hbConfig.AddMapping(domainMapping);
+    // add mapping to nhiberate configuration
+    hbConfig.AddMapping(domainMapping);
 
 
-            // instantiate a new IsessionFactory (use properties, settings and mapping)
-            var sessionFactory = hbConfig.BuildSessionFactory();
+    // instantiate a new IsessionFactory (use properties, settings and mapping)
+    var sessionFactory = hbConfig.BuildSessionFactory();
 
-            var session = sessionFactory.OpenSession();
+    var session = sessionFactory.OpenSession();
 
-            return session;
-        }
-    }
+    return session;
 }
