@@ -12,7 +12,7 @@ using (var session = CreateSession())
 {
     using (var transaction = session.BeginTransaction())
     {
-        var walletToAdd = new Wallet { Holder = "Smith", Balance = 0 };
+        var walletToAdd = new Wallet { Holder = "blabla Hassan", Balance = 6000 };
 
         session.Save(walletToAdd);
 

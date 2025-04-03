@@ -11,10 +11,19 @@ using (var session = CreateSession())
 {
     using (var transaction = session.BeginTransaction())
     {
-        var idToDelete = 16;
+        var idToDelete = 7;
         var wallet = session.Get<Wallet>(idToDelete);
-        session.Delete(wallet);
-        transaction.Commit();
+        
+        if (wallet != null)
+        {
+            session.Delete(wallet);
+            transaction.Commit();
+            Console.WriteLine($"Wallet with ID {idToDelete} was successfully deleted.");
+        }
+        else
+        {
+            Console.WriteLine($"Wallet with ID {idToDelete} was not found.");
+        }
     }
 }
 

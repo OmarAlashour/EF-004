@@ -11,9 +11,9 @@ using System;
 using var session = CreateSession();
 using var transaction = session.BeginTransaction();
 
-var idToUpdate = 16;
+var idToUpdate = 5;
 var wallet = session.Get<Wallet>(idToUpdate);
-wallet.Balance = 5000m;
+wallet.Balance = 50000;
 session.Update(wallet);
 transaction.Commit();
 Console.WriteLine(wallet);

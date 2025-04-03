@@ -15,18 +15,46 @@ var idFrom = 3;
 var idTo = 2;
 var amountToTransfer = 1000;
 
-var walletFrom = session.Get<Wallet>(idFrom);
-var walletTo = session.Get<Wallet>(idTo);
+try 
+{
+    var walletFrom = session.Get<Wallet>(idFrom);
+    var walletTo = session.Get<Wallet>(idTo);
 
-walletFrom.Balance -= amountToTransfer;
-walletTo.Balance += amountToTransfer;
+    if (walletFrom == null || walletTo == null)
+    {
+        throw new Exception("One or both wallets not found");
+    }
 
-session.Update(walletFrom);
-session.Update(walletTo);
+    if (walletFrom.Balance < amountToTransfer)
+    {
+        throw new Exception("Insufficient funds for transfer");
+    }
 
-transaction.Commit();
+    Console.WriteLine($"Starting transfer of ${amountToTransfer} from wallet {idFrom} to wallet {idTo}");
+    Console.WriteLine($"Initial balance - From Wallet: ${walletFrom.Balance}, To Wallet: ${walletTo.Balance}");
 
-Console.ReadKey();
+    walletFrom.Balance -= amountToTransfer;
+    walletTo.Balance += amountToTransfer;
+
+    session.Update(walletFrom);
+    session.Update(walletTo);
+
+    transaction.Commit();
+
+    Console.WriteLine($"Transfer completed successfully!");
+    Console.WriteLine($"Final balance - From Wallet: ${walletFrom.Balance}, To Wallet: ${walletTo.Balance}");
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Error: Transfer failed!");
+    Console.WriteLine($"Reason: {ex.Message}");
+    transaction.Rollback();
+}
+finally
+{
+    Console.WriteLine("Press any key to exit...");
+    Console.ReadKey();
+}
 
 ISession CreateSession()
 {

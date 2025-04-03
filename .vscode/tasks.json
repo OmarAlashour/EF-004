@@ -10,10 +10,6 @@
                 "${workspaceFolder}/EF004.CreateSession/EF004.CreateSession.csproj"
             ],
             "problemMatcher": "$msCompile",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
         },
         {
             "label": "build EF004.RetrieveData",
@@ -23,7 +19,7 @@
                 "build", 
                 "${workspaceFolder}/EF004.RetrieveData/EF004.RetrieveData.csproj"
             ],
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
         },
         {
             "label": "build EF004.InsertWallet",
@@ -33,7 +29,7 @@
                 "build",
                 "${workspaceFolder}/EF004.InsertWallet/EF004.InsertWallet.csproj"
             ],
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
         },
         {
             "label": "build EF004.DeleteWallet",
@@ -43,7 +39,7 @@
                 "build",
                 "${workspaceFolder}/EF004.DeleteWallet/EF004.DeleteWallet.csproj"
             ],
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
         },
         {
             "label": "build EF004.RetrieveWalletById",
@@ -53,7 +49,7 @@
                 "build",
                 "${workspaceFolder}/EF004.RetrieveWalletById/EF004.RetrieveWalletById.csproj"
             ],
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
         },
         {
             "label": "build EF004.TransferFunds",
@@ -63,7 +59,11 @@
                 "build",
                 "${workspaceFolder}/EF004.TransferFunds/EF004.TransferFunds.csproj"
             ],
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         },
         {
             "label": "build EF004.UpdateWallet",
@@ -73,7 +73,7 @@
                 "build",
                 "${workspaceFolder}/EF004.UpdateWallet/EF004.UpdateWallet.csproj"
             ],
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
         }
     ]
 }

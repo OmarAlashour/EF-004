@@ -9,12 +9,12 @@ public class WalletMapping: ClassMapping<Wallet>
 {
     public WalletMapping()
     {
-        Id(x => x.Id, c =>
-        {
-            c.Generator(Generators.Identity);
-            c.Type(NHibernateUtil.Int32);
-            c.Column("Id");
-            c.UnsavedValue(0);
+        Table("Wallets");
+        
+        Id(x => x.Id, m => {
+            m.Generator(Generators.Identity);
+            m.Column("Id");
+            m.UnsavedValue(0);
         });
 
         Property(x => x.Holder, c =>
@@ -29,7 +29,5 @@ public class WalletMapping: ClassMapping<Wallet>
             c.Type(NHibernateUtil.Decimal);
             c.NotNullable(true);
         });
-
-        Table("Wallets");
     } 
 }
